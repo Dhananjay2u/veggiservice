@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 import com.test.tealight.repository.OrderDetails;
 import com.test.tealight.repository.OrderDetailsRepository;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -19,6 +21,9 @@ public class OrderDetailsService {
 
     // Create
     public OrderDetails createOrderDetails(OrderDetails orderDetails) {
+    	if(Objects.isNull(orderDetails.getOrderDate())) {
+    		orderDetails.setOrderDate(LocalDate.now());
+    	}
         return orderDetailsRepository.save(orderDetails);
     }
 
@@ -39,6 +44,9 @@ public class OrderDetailsService {
         orderDetails.setName(orderDetailsDetails.getName());
         orderDetails.setQuantityInGrams(orderDetailsDetails.getQuantityInGrams());
         orderDetails.setPricePerKg(orderDetailsDetails.getPricePerKg());
+        if(Objects.isNull(orderDetails.getOrderDate())) {
+    		orderDetails.setOrderDate(LocalDate.now());
+    	}
         orderDetails.setOrderDate(orderDetailsDetails.getOrderDate());
         return orderDetailsRepository.save(orderDetails);
     }

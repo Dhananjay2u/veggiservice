@@ -21,23 +21,27 @@ public class VeggieController {
     private OrderDetailsService service;
 
     // Create
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping
     public OrderDetails createOrderDetails(@RequestBody OrderDetails orderDetails) {
         return service.createOrderDetails(orderDetails);
     }
 
     // Read
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping
     public List<OrderDetails> getAllOrderDetails() {
         return service.getAllOrderDetails();
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{id}")
     public ResponseEntity<OrderDetails> getOrderDetailsById(@PathVariable("id") Integer id) {
         OrderDetails orderDetails = service.getOrderDetailsById(id).orElseThrow();
         return ResponseEntity.ok(orderDetails);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     // Update
     @PutMapping("/{id}")
     public ResponseEntity<OrderDetails> updateOrderDetails(@PathVariable("id") Integer id, @RequestBody OrderDetails orderDetails) {
@@ -45,6 +49,7 @@ public class VeggieController {
         return ResponseEntity.ok(updatedOrderDetails);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     // Delete
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteOrderDetails(@PathVariable("id") Integer id) {
