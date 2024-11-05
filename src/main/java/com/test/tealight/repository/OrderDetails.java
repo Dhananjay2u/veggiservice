@@ -45,7 +45,13 @@ public class OrderDetails {
 	public void setOrderDate(LocalDate orderDate) {
 		this.orderDate = orderDate;
 	}
-
+	@Override
+	public String toString() {
+		return "OrderDetails [id=" + id + ", name=" + name + ", quantityInGrams=" + quantityInGrams + ", pricePerKg="
+				+ pricePerKg + ", orderDate=" + orderDate + "]";
+	}
+	
+	
     // Getters and Setters
     
 }
